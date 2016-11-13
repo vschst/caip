@@ -1,0 +1,30 @@
+<meta>
+	<info author="Victor Projects" type="script" name="CAIP - Check Another IP" />
+	
+	<script src="caip.lua" type="server" />
+	<script src="chat_check.lua" type="server" />
+
+	<export function="checkAnotherIP" type="server" />
+	
+	<settings>
+        <!-- IP address and port of your MTA server -->
+		<setting name="ServerIP" value="127.0.0.1" />
+		<setting name="ServerPort" value="22003" />
+
+		<setting name="NotDgitsWordsMaxLength" value="3" />
+
+		<!-- Mask of ip addresses to check. -->
+		<setting name="FirstIPNumberMinRange" value="1" />
+		<setting name="FirstIPNumberMaxRange" value="255" />
+		<setting name="SecondIPNumberMinRange" value="0" />
+		<setting name="SecondIPNumberMaxRange" value="255" />
+		<setting name="ThirdIPNumberMinRange" value="0" />
+		<setting name="ThirdIPNumberMaxRange" value="255" />
+		<setting name="FourthIPNumberMinRange" value="0" />
+		<setting name="FourthIPNumberMaxRange" value="255" />
+
+        <!-- Range of ports to check -->
+		<setting name="PortMinRange" value="1024" />
+		<setting name="PortMaxRange" value="49161" />
+     </settings>
+</meta>
