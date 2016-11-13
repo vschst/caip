@@ -1,21 +1,27 @@
 # caip
-[MTA] CAIP - Chech another IP
+[MTA] CAIP - Check another IP
 
 #[RUS]
 Ресурс проверяет строку на наличие совпадений вида IP:Port. 
 Алгоритм поиска основан на перебирании последовательных комбинаций символов цифр из проверяемой строки.
 
+#[ENG]
+This resource checks the string for matches of the view IP:Port.
+A search algorithm based on sequential shuffling of combinations of numbers of the check string.
+
 #[Settings]
 
-#[Export function]
-Type: server
+#[Export functions]
+* ##checkAnotherIP
+  * ###Type
+  Server-only function
 
-Syntax:
->table **checkAnotherIP**(string **theString**)
+  * ###Syntax:
+  >table **checkAnotherIP**(string **theString**)
 
-Arguments:
->**theString** - The string for check
+  * ###Arguments:
+  >**theString** - The string for check
 
-Returns:
-Return table with 2 keys `ErrorCode` and `Checked`. In the case of successful validation, `ErrorCode` is equal to 0. Result of the check
-is written to the key `Checked`. If `Checked` equals *true*, then string contains matches IP:Port, *false* otherwise.
+  * ###Returns:
+  Return table with 2 keys `ErrorCode` and `Checked`. In the case of successful validation, `ErrorCode` is equal to 0. Result of the check
+  is written to the key `Checked`. If `Checked` equals *true*, then string contains matches IP:Port, *false* otherwise.
