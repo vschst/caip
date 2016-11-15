@@ -1,5 +1,5 @@
 <meta>
-	<info author="Victor Projects" type="script" name="CAIP - Check Another IP" />
+	<info author="Victor Projects" version="1.0" name="Check Another IP" type="script" />
 	
 	<script src="caip.lua" type="server" />
 	<script src="chat_check.lua" type="server" />
