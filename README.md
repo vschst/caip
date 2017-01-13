@@ -1,11 +1,11 @@
 # caip
 [MTA] CAIP - Check another IP
 
-#[RUS]
+#[Description][RUS]
 Ресурс проверяет строку на наличие совпадений вида IP:Port. 
 Алгоритм поиска основан на перебирании последовательных комбинаций символов цифр из проверяемой строки.
 
-#[ENG]
+#[Description][ENG]
 This resource checks the string for matches of the view IP:Port.
 A search algorithm based on sequential shuffling of combinations of numbers of the check string.
 
