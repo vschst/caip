@@ -2,7 +2,7 @@
 	<info author="Victor Projects" version="1.0" name="Check Another IP" type="script" />
 	
 	<script src="caip.lua" type="server" />
-	<script src="chat_check.lua" type="server" />
+	<script src="events.lua" type="server" />
 
 	<export function="checkAnotherIP" type="server" />
 	

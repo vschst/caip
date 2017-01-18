@@ -61,9 +61,14 @@ function checkAnotherIP(theString)
 						})
 
 					if ((checkAnotherIPInSubstringStatus == true) and (checkAnotherIPInSubstringResult == true)) then
-						outputServerLog("ANOTHER IP CHECKED! STRING: " .. theString)
-
 						returnTable.Checked = true
+
+						returnTable.IP = StringDigitsWordsData.Digits.Words[i] .. "."
+							.. StringDigitsWordsData.Digits.Words[(i + 1)] .. "."
+							.. StringDigitsWordsData.Digits.Words[(i + 2)] .. "."
+							.. StringDigitsWordsData.Digits.Words[(i + 3)]
+
+						returnTable.Port = StringDigitsWordsData.Digits.Words[(i + 4)]
 
 						break
 					end
