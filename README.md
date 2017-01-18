@@ -1,27 +1,47 @@
 # caip
 [MTA] CAIP - Check another IP
 
-#[Description][RUS]
-Ресурс проверяет строку на наличие совпадений вида IP:Port. 
-Алгоритм поиска основан на перебирании последовательных комбинаций символов цифр из проверяемой строки.
+#[Описание]
+Ресурс проверяет строку на наличие в ней постороннего IP-адреса и порта. Алгоритм поиска основан на перебирании
+последовательных комбинаций символов цифр из проверяемой строки. Доступны настройки, связанные с маской IP-адреса
+и диапазоном портов. Ресурс экспортирует серверную функцию *checkAnotherIP* для проверки строки на
+совпадения вида ip:port, а также серверное событие *onAnotherIPInChat*, проверяющее сообщения
+чата на наличие подобных совпадений.
 
-#[Description][ENG]
-This resource checks the string for matches of the view IP:Port.
-A search algorithm based on sequential shuffling of combinations of numbers of the check string.
+#[Настройки]
 
-#[Settings]
-
-#[Export functions]
+#[Экспортируемые функции]
 * ##checkAnotherIP
-  * ###Type
-  Server-only function
+  Проверяет строку на наличие в ней посторонней комбинации вида ip:port. Сравнение найденных комбинаций
+  производится с данными IP-адреса и порта, указанными в настройках ресурса.
 
-  * ###Syntax:
-  >table **checkAnotherIP**(string **theString**)
+  * ###Тип
+    Серверная функция
 
-  * ###Arguments:
-  >**theString** - The string for check
+  * ###Синтаксис:
+    >table **checkAnotherIP**(string **theString**)
 
-  * ###Returns:
-  Return table with 2 keys `ErrorCode` and `Checked`. In the case of successful validation, `ErrorCode` is equal to 0. Result of the check
-  is written to the key `Checked`. If `Checked` equals *true*, then string contains matches IP:Port, *false* otherwise.
+  * ###Аргументы:
+    >**theString** - Строка для проверки
+
+  * ###Возвращаемое значение:
+    Возвразает таблицу, содержащую ключи `ErrorCode` и `Checked`. В случае успешного выполнения `ErrorCode`
+    должен быть равен *0*. Результат проверки строки записывается в ключ `Checked`. Если `Checked` равен *true*, то
+    строка содержит постороннюю комбинацию вида ip:port, *false* в противном случае. В случае `Checked` равного *true*,
+    дополнительно возвращаются ключи `IP` и `Port`, содержащие данные найденного в строке IP-адреса и порта.
+
+#[Экспортируемые события]
+* ##onAnotherIPInChat
+  Данное событие срабатывает, если при отправке игроком сообщения в чат обнаружена посторонняя
+  комбинация вида ip:порт. В качестве проверяемых данных используются никнейм игрока и отправляемое сообщение.
+
+  * ###Тип
+    Серверное событие
+
+  * ###Параметры:
+    >string **ip**, string **port**
+    * *ip*: Найденный при отправке IP-адрес.
+    * *port*: Найденный при отправке порт.
+
+  * ###Элемент source
+    Элементом *source* данного события является элемент игрока, отправившего сообщение в чат.
