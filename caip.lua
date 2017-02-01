@@ -11,7 +11,7 @@ addEventHandler("onResourceStart", getRootElement(),
 				
 				outputServerLog("[CAIP] Resource was successfully loaded!")
 			else
-				outputServerLog("[CAIP] Failed to load settings! Error code: " .. loadCAIPSettingsResult)
+				outputServerLog("[CAIP] Failed to load settings! Error in " .. loadCAIPSettingsResult)
 			end
 		end
 	end
@@ -169,7 +169,7 @@ function loadCAIPSettings()
 	end
 
 	if (#CAIPSettings.ServerIP ~= 4) then
-		error((-1) * (caipSettingsAmount + 1))
+		error((-1) - caipSettingsAmount)
 	end
 
 	--Server Port
@@ -179,87 +179,87 @@ function loadCAIPSettings()
 	CAIPSettings.NotDgitsWordsMaxLength = tonumber(CAIPSettingsLoad.NotDgitsWordsMaxLength)
 		
 	if (CAIPSettings.NotDgitsWordsMaxLength <= 0) then
-		error((-2) * (caipSettingsAmount + 1))
+		error((-2) - caipSettingsAmount)
 	end
 		
 	--First IP number settings
 	--First IP number minimum range
 	CAIPSettings.FirstIPNumberMinRange = tonumber(CAIPSettingsLoad.FirstIPNumberMinRange)
 		
-	if (CAIPSettings.FirstIPNumberMinRange < 0) then
-		error((-3) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.FirstIPNumberMinRange < 0) or (CAIPSettings.FirstIPNumberMinRange > 255)) then
+		error((-3) - caipSettingsAmount)
 	end
 
 	--First IP number maximum range
 	CAIPSettings.FirstIPNumberMaxRange = tonumber(CAIPSettingsLoad.FirstIPNumberMaxRange)
 
-	if (CAIPSettings.FirstIPNumberMaxRange < 0) then
-		error((-4) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.FirstIPNumberMaxRange < 0) or (CAIPSettings.FirstIPNumberMaxRange > 255)) then
+		error((-4) - caipSettingsAmount)
 	end
 
 	--First IP number validating ranges
 	if (CAIPSettings.FirstIPNumberMaxRange < CAIPSettings.FirstIPNumberMinRange) then
-		error((-5) * (caipSettingsAmount + 1))
+		error((-5) - caipSettingsAmount)
 	end
 
 	--Second IP number settings
 	--Second IP number minimum range
 	CAIPSettings.SecondIPNumberMinRange = tonumber(CAIPSettingsLoad.SecondIPNumberMinRange)
 
-	if (CAIPSettings.SecondIPNumberMinRange < 0) then
-		error((-6) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.SecondIPNumberMinRange < 0) or (CAIPSettings.SecondIPNumberMinRange > 255)) then
+		error((-6) - caipSettingsAmount)
 	end
 
 	--Second IP number maximum range
 	CAIPSettings.SecondIPNumberMaxRange = tonumber(CAIPSettingsLoad.SecondIPNumberMaxRange)
 
-	if (CAIPSettings.SecondIPNumberMaxRange < 0) then
-		error((-7) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.SecondIPNumberMaxRange < 0) or (CAIPSettings.SecondIPNumberMaxRange > 255)) then
+		error((-7) - caipSettingsAmount)
 	end
 
 	--Second IP number validating ranges
 	if (CAIPSettings.SecondIPNumberMaxRange < CAIPSettings.SecondIPNumberMinRange) then
-		error((-8) * (caipSettingsAmount + 1))
+		error((-8) - caipSettingsAmount)
 	end
 
 	--Third IP number settings
 	--Third IP number minimum range
 	CAIPSettings.ThirdIPNumberMinRange = tonumber(CAIPSettingsLoad.ThirdIPNumberMinRange)
 
-	if (CAIPSettings.ThirdIPNumberMinRange < 0) then
-		error((-9) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.ThirdIPNumberMinRange < 0) or (CAIPSettings.ThirdIPNumberMinRange > 255)) then
+		error((-9) - caipSettingsAmount)
 	end
 
 	--Third IP number maximum range
 	CAIPSettings.ThirdIPNumberMaxRange = tonumber(CAIPSettingsLoad.ThirdIPNumberMaxRange)
 
-	if (CAIPSettings.ThirdIPNumberMaxRange < 0) then
-		error((-10) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.ThirdIPNumberMaxRange < 0) or (CAIPSettings.ThirdIPNumberMaxRange > 255)) then
+		error((-10) - caipSettingsAmount)
 	end
 
 	--Third IP number validating ranges
 	if (CAIPSettings.ThirdIPNumberMaxRange < CAIPSettings.ThirdIPNumberMinRange) then
-		error((-11) * (caipSettingsAmount + 1))
+		error((-11) - caipSettingsAmount)
 	end
 
 	--Fourth IP number settings
 	--Fourth IP number minimum range
 	CAIPSettings.FourthIPNumberMinRange = tonumber(CAIPSettingsLoad.FourthIPNumberMinRange)
 
-	if (CAIPSettings.FourthIPNumberMinRange < 0) then
-		error((-12) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.FourthIPNumberMinRange < 0) or (CAIPSettings.FourthIPNumberMinRange > 255)) then
+		error((-12) - caipSettingsAmount)
 	end
 
 	--Fourth IP number maximum range
 	CAIPSettings.FourthIPNumberMaxRange = tonumber(CAIPSettingsLoad.FourthIPNumberMaxRange)
 
-	if (CAIPSettings.FourthIPNumberMaxRange < 0) then
-		error((-13) * (caipSettingsAmount + 1))
+	if ((CAIPSettings.FourthIPNumberMaxRange < 0) or (CAIPSettings.FourthIPNumberMaxRange > 255)) then
+		error((-13) - caipSettingsAmount)
 	end
 
 	--Fourth IP number validating ranges
 	if (CAIPSettings.FourthIPNumberMaxRange < CAIPSettings.FourthIPNumberMinRange) then
-		error((-14) * (caipSettingsAmount + 1))
+		error((-14) - caipSettingsAmount)
 	end
 
 	--Port settings
@@ -267,18 +267,18 @@ function loadCAIPSettings()
 	CAIPSettings.PortMinRange = tonumber(CAIPSettingsLoad.PortMinRange)
 		
 	if (CAIPSettings.PortMinRange <= 0) then
-		error((-15) * (caipSettingsAmount + 1))
+		error((-15) - caipSettingsAmount)
 	end
 		
 	--Port maximum range
 	CAIPSettings.PortMaxRange = tonumber(CAIPSettingsLoad.PortMaxRange)
 		
 	if (CAIPSettings.PortMaxRange <= 0) then
-		error((-16) * (caipSettingsAmount + 1))
+		error((-16) - caipSettingsAmount)
 	end
 
 	--Port validating ranges
 	if (CAIPSettings.PortMaxRange < CAIPSettings.PortMinRange) then
-		error((-17) * (caipSettingsAmount + 1))
+		error((-17) - caipSettingsAmount)
 	end
 end

@@ -14,7 +14,7 @@
 		<setting name="NotDgitsWordsMaxLength" value="3" />
 
 		<!-- Mask of ip addresses to check. -->
-		<setting name="FirstIPNumberMinRange" value="1" />
+		<setting name="FirstIPNumberMinRange" value="0" />
 		<setting name="FirstIPNumberMaxRange" value="255" />
 		<setting name="SecondIPNumberMinRange" value="0" />
 		<setting name="SecondIPNumberMaxRange" value="255" />
