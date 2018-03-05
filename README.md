@@ -118,3 +118,19 @@ Other settings.
     If `Checked` is equal to *true*, then the table of strings contains foreign combination of the form ip:port, *false* otherwise.
 
 # Example
+```lua
+-- Checks the nickname of the player and his message when he writes to chat
+addEventHandler("onPlayerChat", getRootElement(),
+    function(message)
+        local playerName = getPlayerName(source)
+        
+        if (playerName) then
+            local checkAnotherIPStatus = exports["caip"]:checkAnotherIP({playerName, message, playerName .. " " .. message})
+				
+            if ((checkAnotherIPStatus ~= nil) and (checkAnotherIPStatus.Checked == true)) then
+              -- Another IP is found
+            end
+        end
+    end
+)
+```
