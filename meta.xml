@@ -1,8 +1,9 @@
 <meta>
-	<info author="Victor Projects" version="1.0" name="Check Another IP" type="script" />
+	<info author="The Viktor" version="1.0" name="Check Another IP" type="script" />
 	
-	<script src="caip.lua" type="server" />
-	<script src="events.lua" type="server" />
+	<script src="server/main.lua" type="server" />
+	<script src="server/utils.lua" type="server" />
+	<script src="server/exports.lua" type="server" />
 
 	<export function="checkAnotherIP" type="server" />
 	
@@ -10,8 +11,6 @@
         <!-- IP address and port of your MTA server -->
 		<setting name="ServerIP" value="127.0.0.1" />
 		<setting name="ServerPort" value="22003" />
-
-		<setting name="NotDgitsWordsMaxLength" value="3" />
 
 		<!-- Mask of ip addresses to check. -->
 		<setting name="FirstIPNumberMinRange" value="0" />
@@ -26,5 +25,8 @@
         <!-- Range of ports to check -->
 		<setting name="PortMinRange" value="1024" />
 		<setting name="PortMaxRange" value="49161" />
+		
+		<!-- Other settings -->
+		<setting name="NotDgitsWordsMaxLength" value="3" />
      </settings>
 </meta>
