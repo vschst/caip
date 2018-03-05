@@ -1,89 +1,120 @@
 # caip
-[MTA] CAIP - Check another IP
+Check another IP
 
-#Описание
-Ресурс проверяет строку на наличие в ней постороннего IP-адреса и порта. Алгоритм поиска основан на перебирании
-последовательных комбинаций символов цифр из проверяемой строки. Доступны настройки, связанные с маской IP-адреса
-и диапазоном портов. Ресурс экспортирует серверную функцию *checkAnotherIP* для проверки строки на
-совпадения вида ip:port, а также серверное событие *onAnotherIPInChat*, проверяющее сообщения
-чата на наличие подобных совпадений.
+# Description
+The resource checks the strings for the presence of foreign IP address and port.
+A search algorithm based on shuffling sequential character combinations of numerals from the check line.
+Available settings associated with the IP address mask and range of ports.
+Resource exports server function *checkAnotherIP* to check table of string for matching ip:port.
 
-#Настройки (файл meta.xml)
-* ##Группа настроек, связанная с IP-адресом и портом вашего MTA сервера.
-  * ###ServerIP
-    IP-адрес вашего MTA сервера.
+# Installation
+Create a new directory with name **caip** in resource directory of your MTA server.
+Download the repository files to this folder
+```
+git clone https://github.com/victor192/caip path/to/directory/caip
+```
+To start resource, enter the following command in the server console
+```
+start caip
+```
+In case of successful start you will see the message
+```
+[CAIP] Resource was successfully loaded!
+```
+otherwise, you will see a message with the place and the error code.
+If you want to run a resource with the server running, then edit the configuration file *mtaserver.conf*, adding following string
+```
+<resource src="caip" startup="1" protected="0"/>
+```
 
-  * ###ServerPort
-    Порт вашего MTA сервера.
+# Settings
+Resource settings are available in the `meta.xml` file.
 
-* ##Группа настроек, связанная с маской проверяемого IP-адреса. 
-  * ###FirstIPNumberMinRange
-    Минимальное значение первой цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255.
+Group of settings related to IP address and port of your MTA server.
+* **ServerIP**
+  
+  IP address of your MTA server.
+  
+* **ServerPort**
+  
+  Port of your MTA server.
+  
+Group of settings related to the mask of IP address.
+* **FirstIPNumberMinRange**
+  
+  The minimum value of the first digit of IP address.
+  Must be a whole number from 0 to 255.
+  
+* **FirstIPNumberMaxRange**
+  
+  The maximum value of the first digit of IP address.
+  Must be a whole number from 0 to 255 and greater than the value of *FirstIPNumberMinRange*.
+  
+* **SecondIPNumberMinRange**
+  
+  The minimum value of the second digit of of IP address.
+  Must be a whole number from 0 to 255.
+  
+* **SecondIPNumberMaxRange**
+  
+  The maximum value of the second digit of IP address.
+  Must be a whole number from 0 to 255 and greater than the value of *SecondIPNumberMinRange*.
+  
+* **ThirdIPNumberMinRange**
+  
+  The minimum value of the third digit of IP address.
+  Must be a whole number from 0 to 255.
+  
+* **ThirdIPNumberMaxRange**
+  
+  The maximum value of the third digit of IP address.
+  Must be a whole number from 0 to 255 and greater than the value of *ThirdIPNumberMinRange*.
+  
+* **FourthIPNumberMinRange**
+  
+  The minimum value of the fourth digit of IP address.
+  Must be a whole number from 0 to 255.
+  
+* **FourthIPNumberMaxRange**
+  
+  The maximum value of the fourth digit of IP address.
+  Must be a whole number from 0 to 255 and greater than the value of *FourthIPNumberMinRange*.
 
-  * ###FirstIPNumberMaxRange
-    Максимальное значение первой цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255 и большим чем значение *FirstIPNumberMinRange*.
-    
-  * ###SecondIPNumberMinRange
-    Минимальное значение второй цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255.
+Group of settings related to the port range.
+* **PortMinRange**
+  
+  The minimum value of the port.
+  Must be an integer greater than zero.
+  
+* **PortMaxRange**
+  
+  The maximum value of the port.
+  Must be a integer greater than the value of *PortMinRange*.
+  
+Other settings.
+* **NotDgitsWordsMaxLength**
 
-  * ###SecondIPNumberMaxRange
-    Максимальное значение второй цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255 и большим чем значение *SecondIPNumberMinRange*.
-    
-  * ###ThirdIPNumberMinRange
-    Минимальное значение третьей цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255.
+  Maximum length of the substring located between the numbers in coincidence type ip: port.
 
-  * ###ThirdIPNumberMaxRange
-    Максимальное значение третьей цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255 и большим чем значение *ThirdIPNumberMinRange*.
-    
-  * ###FourthIPNumberMinRange
-    Минимальное значение четвертой цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255.
+# Exported functions
+* **checkAnotherIP**
+  
+  Checks a table of strings for the presence of foreign combination of the form ip:port.
+  Comparison of the found combinations are made with the data of IP address and port specified in the settings of the resource.
 
-  * ###FourthIPNumberMaxRange
-    Максимальное значение четвертой цифры проверяемого IP-адреса. Должно быть целым числом от 0 до 255 и большим чем значение *FourthIPNumberMinRange*.
-    
-* ##Группа настроек, связанная с диапазоном портов.
+  * **Type**:
+    Server-only function
 
-  * ###PortMinRange
-    Минимальное значение проверяемого порта. Должно быть целым числом, большим нуля.
+  * **Syntax**:
+    >table **checkAnotherIP**(table **Strings**)
 
-  * ###PortMaxRange
-    Максимальное значение проверяемого порта. Должно быть целым числом, большим чем значение *PortMinRange*.
-    
-* ##NotDgitsWordsMaxLength
-  Максимальная длина подстроки, расположенной между цифрами в совпадении вида ip:port.
+  * **Required Arguments**:
+    * **Strings**: Table of string to check.
 
-#Экспортируемые функции
-* ##checkAnotherIP
-  Проверяет строку на наличие в ней посторонней комбинации вида ip:port. Сравнение найденных комбинаций
-  производится с данными IP-адреса и порта, указанными в настройках ресурса.
+  * **Returns**:
+    Returns a table that contains the keys `ErrorCode` and `Checked`.
+    In case of successful execution, `ErrorCode` must be equal to *0*.
+    The result of strings check is written to the key `Checked`.
+    If `Checked` is equal to *true*, then the table of strings contains foreign combination of the form ip:port, *false* otherwise.
 
-  * ###Тип
-    Серверная функция
-
-  * ###Синтаксис
-    >table **checkAnotherIP**(string **theString**)
-
-  * ###Аргументы
-    * **theString**: Строка для проверки.
-
-  * ###Возвращаемое значение
-    Возвращает таблицу, содержащую ключи `ErrorCode` и `Checked`. В случае успешного выполнения `ErrorCode`
-    должен быть равен *0*. Результат проверки строки записывается в ключ `Checked`. Если `Checked` равен *true*, то
-    строка содержит постороннюю комбинацию вида ip:port, *false* в противном случае. В случае `Checked` равного *true*,
-    дополнительно возвращаются ключи `IP` и `Port`, содержащие данные найденного в строке IP-адреса и порта.
-
-#Экспортируемые события
-* ##onAnotherIPInChat
-  Данное событие срабатывает, если при отправке игроком сообщения в чат обнаружена посторонняя
-  комбинация вида ip:порт. В качестве проверяемых данных используются никнейм игрока и отправляемое сообщение.
-
-  * ###Тип
-    Серверное событие
-
-  * ###Параметры
-    >string **ip**, string **port**
-    * *ip*: Найденный при отправке IP-адрес.
-    * *port*: Найденный при отправке порт.
-
-  * ###Элемент source
-    Элементом *source* данного события является элемент игрока, отправившего сообщение в чат.
+# Example
