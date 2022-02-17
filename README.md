@@ -11,7 +11,7 @@ Resource exports server function *checkAnotherIP* to check table of string for m
 Create a new directory with name **caip** in resource directory of your MTA server.
 Download the repository files to this folder
 ```
-git clone https://github.com/victor192/caip path/to/directory/caip
+git clone https://github.com/vschst/caip path/to/directory/caip
 ```
 To start resource, enter the following command in the server console
 ```
